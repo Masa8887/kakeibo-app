@@ -6,33 +6,47 @@
 
 **kakeibo-app** — 家計簿アプリ。収入・支出を記録し、カテゴリ別・月別に集計して家計を把握するためのアプリケーション。
 
-> 現在はプロジェクト立ち上げ段階です。技術スタックや構成が決まり次第、以下の該当セクションを更新してください。
+レシート画像を Claude API で読み取り、商品をカテゴリ別に自動分類して集計する。
 
 ## 技術スタック
 
-- 言語 / フレームワーク: (未定)
-- データ保存: (未定)
-- パッケージ管理: (未定)
+- フロントエンド: React + Vite、グラフは Chart.js(react-chartjs-2)
+- バックエンド: Node.js + Express(Claude API の呼び出しはここだけで行う)
+- Claude API: `@anthropic-ai/sdk`、モデルは `claude-haiku-5-5`、Structured Outputs(zod)で JSON を受け取る
+- データ保存: ブラウザのローカルストレージ(キー `kakeibo:receipts`)
+- パッケージ管理: npm
+- API キー: `.env` の `ANTHROPIC_API_KEY`(`.gitignore` 済み。`.env.example` を参照)
 
 ## よく使うコマンド
 
 ```bash
 # 依存関係のインストール
-# (未定)
+npm install
 
-# 開発サーバーの起動
-# (未定)
+# 開発サーバーの起動(バックエンド :3001 とフロントエンド :5173 を同時起動)
+npm run dev
 
 # テストの実行
-# (未定)
+npm test
+
+# ビルド
+npm run build
 
 # Lint / フォーマット
-# (未定)
+# (未導入)
 ```
 
 ## ディレクトリ構成
 
-(コードが追加され次第記載)
+```
+server/
+  index.js        Express サーバー(/api/receipts/analyze)
+  receipt.js      Claude API でレシートを読み取る処理
+src/
+  App.jsx         画面全体と状態管理
+  components/     アップロード・確認フォーム・グラフ・明細一覧
+  utils/          カテゴリ定義・日付・集計・ローカルストレージ・画像縮小
+```
 
 ## 開発ルール
 
