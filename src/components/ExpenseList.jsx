@@ -18,7 +18,7 @@ export default function ExpenseList({ receipts, onChangeCategory, onDeleteItem }
           <table className="table">
             <thead>
               <tr>
-                <th>日付</th>
+                <th>日時</th>
                 <th>店名</th>
                 <th>商品名</th>
                 <th className="num">金額</th>
@@ -29,7 +29,9 @@ export default function ExpenseList({ receipts, onChangeCategory, onDeleteItem }
             <tbody>
               {items.map((item) => (
                 <tr key={item.id}>
-                  <td className="nowrap">{item.date}</td>
+                  <td className="nowrap">
+                    {item.date} {item.time}
+                  </td>
                   <td>{item.store || "—"}</td>
                   <td>{item.name}</td>
                   <td className="num">{formatYen(item.amount)}</td>

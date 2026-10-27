@@ -218,6 +218,19 @@ select {
   margin-left: 4px;
 }
 
+.alert {
+  color: var(--warn);
+  background: #fdf4e3;
+  border: 1px solid #f0d9a8;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+}
+
+.row-warn td {
+  background: #fdf4e3;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

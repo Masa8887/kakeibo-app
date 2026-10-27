@@ -44,7 +44,7 @@ export default function App() {
       </header>
 
       {pending ? (
-        <ReceiptReview result={pending} onSave={addReceipt} onCancel={() => setPending(null)} />
+        <ReceiptReview result={pending} receipts={receipts} onSave={addReceipt} onCancel={() => setPending(null)} />
       ) : (
         <ReceiptUpload onAnalyzed={setPending} />
       )}

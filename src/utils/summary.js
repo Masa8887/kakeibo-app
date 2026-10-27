@@ -9,10 +9,12 @@ export function flattenItems(receipts) {
         ...item,
         receiptId: receipt.id,
         date: receipt.date,
+        // 時刻のない古いデータもあるため空文字で補う
+        time: receipt.time ?? "",
         store: receipt.store,
       })),
     )
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => `${b.date} ${b.time}`.localeCompare(`${a.date} ${a.time}`));
 }
 
 /** 登録済みデータに含まれる月(YYYY-MM)を古い順に返す */

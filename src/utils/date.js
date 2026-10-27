@@ -15,6 +15,11 @@ export function isValidDateString(value) {
   return date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d;
 }
 
+/** HH:MM 形式として正しい時刻かどうか */
+export function isValidTimeString(value) {
+  return typeof value === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(value);
+}
+
 /** YYYY-MM-DD から月キー(YYYY-MM)を取り出す */
 export function toMonthKey(dateString) {
   return dateString.slice(0, 7);

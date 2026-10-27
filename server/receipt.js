@@ -13,6 +13,7 @@ export const SUPPORTED_MEDIA_TYPES = ["image/jpeg", "image/png", "image/gif", "i
 const ReceiptSchema = z.object({
   store: z.string().describe("店名。読み取れない場合は空文字"),
   date: z.string().describe("購入日(YYYY-MM-DD)。読み取れない場合は空文字"),
+  time: z.string().describe("購入時刻(24時間表記の HH:MM)。読み取れない場合は空文字"),
   items: z.array(
     z.object({
       name: z.string().describe("商品名"),
@@ -33,7 +34,7 @@ const PROMPT = `この画像は日本のレシートです。内容を読み取�
 - category は次から選ぶ: ${CATEGORIES.join("、")}。
   - スーパー等で買った食材・飲み物・お菓子は「食費」、飲食店での食事は「外食」。
   - 洗剤・ティッシュ・消耗品などは「日用品」。
-- 日付は和暦なら西暦に変換して YYYY-MM-DD で答える。
+- 日付は和暦なら西暦に変換して YYYY-MM-DD で答える。時刻は 24時間表記の HH:MM で答える。
 - 画像がレシートでない場合や読み取れない場合は items を空配列にする。`;
 
 // API キーは環境変数 ANTHROPIC_API_KEY から SDK が自動で読み込む
